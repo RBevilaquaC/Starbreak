@@ -23,4 +23,13 @@ public class Bullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!col.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<LifeSystem>().takeDamage(1);
+            gameObject.SetActive(false);
+        }
+    }
 }

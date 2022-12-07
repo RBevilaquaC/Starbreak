@@ -14,11 +14,13 @@ public class Movement : MonoBehaviour
     private Vector2 dirToMove;
     private Vector2 inputDir;
     private Vector2 inputDirLast;
+    private Camera _camera;
 
     #endregion
 
     private void Start()
     {
+        _camera = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         inputDirLast = Vector2.zero;
     }
@@ -46,14 +48,10 @@ public class Movement : MonoBehaviour
 
     private void RotateSpaceship()
     {
-        Vector2 currentPos = Camera.main.WorldToViewportPoint (transform.position);
-        Vector2 mousePos = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        float angle = AngleBetweenTwoPoints(currentPos, mousePos);
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler (new Vector3(0f,0f,angle+90)), rotateModifier);
-        //transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle+90));
-    }
-    
-    private float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Vector2.SignedAngle(Vector2.right, direction);
+        Vector3 targetRotation = new Vector3(0, 0, angle-90);
+        transform.rotation = (Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), rotateModifier));
     }
 }

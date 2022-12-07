@@ -28,7 +28,6 @@ public class WeaponSystem : MonoBehaviour
         if(Input.GetButton("Fire1") && timerCDShoot <= 0)
         {
             Shoot();
-            print("pew");
             timerCDShoot = cdShoot;
         }
         else if (timerCDShoot >= 0) timerCDShoot -= Time.deltaTime;
