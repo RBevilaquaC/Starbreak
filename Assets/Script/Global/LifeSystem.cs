@@ -7,8 +7,8 @@ public class LifeSystem : MonoBehaviour
 {
     #region Parameters
 
-    [SerializeField] private int maxLife;
-    private int currentLife;
+    [SerializeField] protected int maxLife;
+    protected int currentLife;
 
     #endregion
 
@@ -17,7 +17,7 @@ public class LifeSystem : MonoBehaviour
         currentLife = maxLife;
     }
 
-    public void takeDamage(int damgeAmount)
+    public virtual void takeDamage(int damgeAmount)
     {
         currentLife -= damgeAmount;
         if(currentLife <= 0) Death();

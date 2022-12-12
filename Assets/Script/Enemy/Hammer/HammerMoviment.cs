@@ -34,4 +34,12 @@ public class HammerMoviment : MonoBehaviour
         Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad),0);
         GetComponent<Rigidbody2D>().velocity = dir * speedModifier;
     }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<LifeSystem>().takeDamage(10);
+        }
+    }
 }
