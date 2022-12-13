@@ -45,6 +45,7 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         GameObject bullet = bulletPool.GetChild(currentBullet).gameObject;
+        bullet.GetComponent<Bullet>().owner = gameObject;
         float angle = transform.rotation.eulerAngles.z+90;
         Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad),0);
         Vector3 dirSide = new Vector3(Mathf.Cos((angle-90) * Mathf.Deg2Rad), Mathf.Sin((angle-90) * Mathf.Deg2Rad),0);

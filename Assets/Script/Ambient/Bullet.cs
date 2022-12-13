@@ -6,13 +6,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private bool init = true;
-
+    public GameObject owner;
+    
     private void OnEnable()
     {
         if (init) init = false;
         else Invoke("Disable", 5);
     }
-
+    
     private void OnDisable()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Player"))
+        if (col.gameObject != owner)
         {
             col.gameObject.GetComponent<LifeSystem>().takeDamage(1);
             gameObject.SetActive(false);
