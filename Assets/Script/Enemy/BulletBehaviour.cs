@@ -22,6 +22,7 @@ public class BulletBehaviour : MonoBehaviour
     public float size;
     public float spin_speed;
     private float time;
+    private List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     
 
     private void Awake()
@@ -54,7 +55,9 @@ public class BulletBehaviour : MonoBehaviour
             mainModule.startColor = Color.green;
             mainModule.startSize = 0.5f;
             mainModule.startSpeed = speed;
-            
+            mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
+            mainModule.maxParticles = 10000;
+            mainModule.duration = 0f;
 
             var emission = system.emission;
             emission.enabled = false;
@@ -67,6 +70,8 @@ public class BulletBehaviour : MonoBehaviour
             text.enabled = true;
             text.mode = ParticleSystemAnimationMode.Sprites;
             text.AddSprite(texture);
+            var col = system.collision;
+            col.enabled = true;
         }
        
 
@@ -89,5 +94,23 @@ public class BulletBehaviour : MonoBehaviour
             //system.Play(); // Continue normal emissions
         }
         
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        int events = system.GetCollisionEvents(other, colEvents);
+        
+        int i = 0;
+
+        while (i < events)
+        {
+            i++;
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("pegou");
+                other.TryGetComponent(out LifeSystem currentLife);
+                currentLife.takeDamage(2);
+            }
+        }
     }
 }
