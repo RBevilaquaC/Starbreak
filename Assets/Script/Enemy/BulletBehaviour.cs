@@ -20,6 +20,8 @@ public class BulletBehaviour : MonoBehaviour
     public Sprite texture;
     public float speed;
     public float size;
+    public float spin_speed;
+    private float time;
     
 
     private void Awake()
@@ -27,6 +29,11 @@ public class BulletBehaviour : MonoBehaviour
         Summon();
     }
 
+    private void FixedUpdate()
+    {
+        time += Time.fixedDeltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, time*spin_speed);
+    }
 
     void Summon()
     {
