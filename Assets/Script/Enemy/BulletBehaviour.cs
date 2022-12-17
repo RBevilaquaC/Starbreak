@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 
 // In this example, we have a Particle System emitting green particles; we then emit and override some properties every 2 seconds.
 public class BulletBehaviour : MonoBehaviour
@@ -13,7 +12,7 @@ public class BulletBehaviour : MonoBehaviour
 
     public float fireRate;
 
-    public Material material;
+    public Material _material;
     private float angle;
     public float bulletLifeTime;
     public Color color;
@@ -22,8 +21,9 @@ public class BulletBehaviour : MonoBehaviour
     public float size;
     public float spin_speed;
     private float time;
-    private List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
-    
+    //private List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
+    private int events;
+
 
     private void Awake()
     {
@@ -47,24 +47,27 @@ public class BulletBehaviour : MonoBehaviour
             // Create a green Particle System.
             var go = new GameObject("Particle System");
             go.transform.Rotate(angle*i, 90, 0); // Rotate so the system emits upwards.
-            go.transform.parent = this.transform;
-            go.transform.position = this.transform.position;
+            //var bounds = this.GetComponent<BoxCollider>().bounds;
+            go.transform.parent = transform;
+            go.transform.position = transform.position;
             system = go.AddComponent<ParticleSystem>();
-            go.GetComponent<ParticleSystemRenderer>().material = particleMaterial;
+            go.AddComponent<BulletCollision>();
+            go.GetComponent<ParticleSystemRenderer>().material = _material;
             var mainModule = system.main;
             mainModule.startColor = Color.green;
             mainModule.startSize = 0.5f;
             mainModule.startSpeed = speed;
             mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
             mainModule.maxParticles = 10000;
-            mainModule.duration = 0f;
 
             var emission = system.emission;
             emission.enabled = false;
 
             var forma = system.shape;
             forma.enabled = true;
-            forma.shapeType = ParticleSystemShapeType.Sprite;
+            forma.shapeType = ParticleSystemShapeType.Cone;
+            forma.angle = 0f;
+            forma.radius = 0;
             forma.sprite = null;
             var text = system.textureSheetAnimation;
             text.enabled = true;
@@ -72,6 +75,11 @@ public class BulletBehaviour : MonoBehaviour
             text.AddSprite(texture);
             var col = system.collision;
             col.enabled = true;
+            col.type = ParticleSystemCollisionType.World;
+            col.mode = ParticleSystemCollisionMode.Collision2D;
+            col.bounce = 0;
+            col.lifetimeLoss = 1;
+            col.sendCollisionMessages= true;
         }
        
 
@@ -94,23 +102,5 @@ public class BulletBehaviour : MonoBehaviour
             //system.Play(); // Continue normal emissions
         }
         
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        int events = system.GetCollisionEvents(other, colEvents);
-        
-        int i = 0;
-
-        while (i < events)
-        {
-            i++;
-            if (other.CompareTag("Player"))
-            {
-                Debug.Log("pegou");
-                other.TryGetComponent(out LifeSystem currentLife);
-                currentLife.takeDamage(2);
-            }
-        }
     }
 }

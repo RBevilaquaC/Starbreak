@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8743057286595803399}
   - component: {fileID: 8743057286595803398}
-  - component: {fileID: 8743057286595803396}
+  - component: {fileID: 2748724833960256800}
   m_Layer: 0
   m_Name: EnemyShip
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8743057286595803396
+--- !u!114 &2748724833960256800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 0}
-  columns: 7
+  columns: 2
   fireRate: 0.1
-  material: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  bulletLifeTime: 3
-  color: {r: 1, g: 0, b: 0, a: 0}
-  texture: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  speed: 20
-  size: 0.8
-  spin_speed: 30
+  _material: {fileID: 2100000, guid: 50b4984f6614f0a468900116c8261948, type: 2}
+  bulletLifeTime: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  texture: {fileID: 21300000, guid: 367963777dc3c764395c263191b6ee67, type: 3}
+  speed: 15
+  size: 0.2
+  spin_speed: 50
