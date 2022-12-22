@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 // In this example, we have a Particle System emitting green particles; we then emit and override some properties every 2 seconds.
 public class BulletBehaviour : MonoBehaviour
 {
+    //public Light laserLight;
+
+    public ParticleSystem bulletHit;
     public ParticleSystem system;
 
     public float columns;
@@ -52,6 +56,7 @@ public class BulletBehaviour : MonoBehaviour
             go.transform.position = transform.position;
             system = go.AddComponent<ParticleSystem>();
             go.AddComponent<BulletCollision>();
+            //.AddComponent<AttachGameObjectsToParticles>();
             go.GetComponent<ParticleSystemRenderer>().material = _material;
             var mainModule = system.main;
             mainModule.startColor = Color.green;
@@ -59,7 +64,7 @@ public class BulletBehaviour : MonoBehaviour
             mainModule.startSpeed = speed;
             mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
             mainModule.maxParticles = 10000;
-
+            
             var emission = system.emission;
             emission.enabled = false;
 
@@ -80,6 +85,14 @@ public class BulletBehaviour : MonoBehaviour
             col.bounce = 0;
             col.lifetimeLoss = 1;
             col.sendCollisionMessages= true;
+
+            var _light = system.lights;
+            //_light.enabled = true;
+            //_light.light = laserLight;
+            //_light.ratio = 1f;
+            var _subEmitters = system.subEmitters;
+            _subEmitters.enabled = true;
+            _subEmitters.AddSubEmitter(bulletHit, ParticleSystemSubEmitterType.Collision, ParticleSystemSubEmitterProperties.InheritNothing);
         }
        
 
