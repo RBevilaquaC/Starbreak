@@ -9,7 +9,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     //public Light laserLight;
 
-    public ParticleSystem bulletHit;
+    //public ParticleSystem bulletHit;
     public ParticleSystem system;
 
     public float columns;
@@ -90,9 +90,9 @@ public class BulletBehaviour : MonoBehaviour
             //_light.enabled = true;
             //_light.light = laserLight;
             //_light.ratio = 1f;
-            var _subEmitters = system.subEmitters;
-            _subEmitters.enabled = true;
-            _subEmitters.AddSubEmitter(bulletHit, ParticleSystemSubEmitterType.Collision, ParticleSystemSubEmitterProperties.InheritNothing);
+           // var _subEmitters = system.subEmitters;
+            //_subEmitters.enabled = true;
+            //_subEmitters.AddSubEmitter(bulletHit, ParticleSystemSubEmitterType.Collision, ParticleSystemSubEmitterProperties.InheritNothing);
         }
        
 
