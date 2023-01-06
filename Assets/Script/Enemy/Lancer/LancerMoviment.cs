@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HammerMoviment : EnemyBasicMovements
+public class LancerMoviment : EnemyBasicMovements
 {
     private void FixedUpdate()
     {
         lookToPlayer();
-        MoveFoward();
     }
 }
