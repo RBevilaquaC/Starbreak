@@ -12,6 +12,7 @@ public class PlayerLifeSystem : LifeSystem
     {
         base.takeDamage(damgeAmount);
         UpdateLifeBar();
+        Camera.main.GetComponent<ShakeCamera>();
 
     }
 

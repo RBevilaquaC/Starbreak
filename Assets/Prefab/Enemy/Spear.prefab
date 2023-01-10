@@ -160,6 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedModifier: 5
   turnModifier: 0.3
+  speedBulletModifier: 0
+  cdShoot: 0
   distToStay: 6
 --- !u!114 &2425374505855486460
 MonoBehaviour:
@@ -174,3 +176,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 5
+  floatingTextPrefab: {fileID: 2498904764881984981, guid: 779193df8b7833348b6660935f5135c9, type: 3}

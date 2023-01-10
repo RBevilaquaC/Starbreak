@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 100
+  floatingTextPrefab: {fileID: 0}
   lifeBar: {fileID: 0}
 --- !u!114 &1543881014
 MonoBehaviour:
