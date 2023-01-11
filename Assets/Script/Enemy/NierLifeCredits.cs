@@ -14,21 +14,17 @@ public class NierLifeCredits : LifeSystem
 
     public override void Death()
     {
-        gameObject.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        gameObject.GetComponent<TextMeshProUGUI>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        Debug.Log("Morreu");
-        foreach (Transform childs in transform)
+        Transform guns = transform.Find("Guns");
+        transform.Find("Explosion").GetComponent<ParticleSystem>().Play();
+        
+        foreach (Transform childs in guns)
         {
-            if (childs.GetComponent<NierBulletCollision>() != null)
-            {
-                var emissionModule = childs.GetComponent<ParticleSystem>().emission;
-                emissionModule.rateOverTime = 0;
-                Debug.Log("Funcionou");
-            }
-            else
-            {
-                childs.GetComponent<ParticleSystem>().Play();
-            }
+            var emissionModule = childs.GetComponent<ParticleSystem>().emission;
+            emissionModule.rateOverTime = 0;
+            Debug.Log("Funcionou");
+            
         }
         Destroy(gameObject, 3f);
         //other.GetComponentInChildren<ParticleSystem>().Play();
