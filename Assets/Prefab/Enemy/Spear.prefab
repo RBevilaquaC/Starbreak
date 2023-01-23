@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2425374505855486451}
   - component: {fileID: 2425374505855486450}
   - component: {fileID: 2425374505855486449}
-  - component: {fileID: 2425374505855486460}
+  - component: {fileID: 5050069694649354204}
   m_Layer: 7
   m_Name: Spear
   m_TagString: Enemy
@@ -164,7 +164,7 @@ MonoBehaviour:
   speedBulletModifier: 8
   cdShoot: 0.5
   distToStay: 6
---- !u!114 &2425374505855486460
+--- !u!114 &5050069694649354204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2425374505855486453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f4e3b060f3ce842934338ebf6d4992, type: 3}
+  m_Script: {fileID: 11500000, guid: 31c6a429b7a51e84ab082fb453961592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 5
@@ -240,7 +240,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 5
+    scalar: 1
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -3969,7 +3969,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 119
+      m_Bits: 375
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
