@@ -16,12 +16,21 @@ public class MovementBehavior : MonoBehaviour
     private Vector3 positionShip;
     private Vector3 acelerationShip;
 
+    private float horiz;
+    private float vert;
+
     private void Start()
     {
         transformShip =transform;
         rotationShip = transformShip.rotation;
         positionShip = transformShip.position;
         zPosShip = rotationShip.eulerAngles.z;
+    }
+
+    private void Update()
+    {
+        horiz = Input.GetAxis("Horizontal");
+        vert = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
@@ -32,19 +41,18 @@ public class MovementBehavior : MonoBehaviour
 
     private void RotationShip()
     {
-        float x = Input.GetAxis("Horizontal");
 
-        if (x > 0)
+        if (horiz > 0)
         {
             print("propulsor dianteiro: Esquerda || propulsor traseiro: Direita");
         }
 
-        if (x < 0)
+        if (horiz < 0)
         {
             print("propulsor dianteiro: Direita || propulsor traseiro: Esquerda");
         }
         
-        zPosShip -= x * rotSpeed * Time.deltaTime;
+        zPosShip -= horiz * rotSpeed * Time.deltaTime;
         rotationShip = Quaternion.Euler(0,0,zPosShip);
         transform.rotation = rotationShip;
         
@@ -52,19 +60,17 @@ public class MovementBehavior : MonoBehaviour
 
     private void MovementSHip()
     {
-        float x = Input.GetAxis("Vertical");
 
-        if (x > 0)
+        if (vert > 0)
         {
-            acelerationShip = new Vector3(0, x * maxSpeed * Time.deltaTime, 0);
+            acelerationShip = new Vector3(0, vert * maxSpeed * Time.deltaTime, 0);
             positionShip += rotationShip * acelerationShip;
             transform.position = positionShip;
         }
 
-        if (x < 0)
+        if (vert < 0)
         {
-            x /= 2;
-            acelerationShip = new Vector3(0, x * maxSpeed * Time.deltaTime, 0);
+            acelerationShip = new Vector3(0, (vert/2) * maxSpeed * Time.deltaTime, 0);
             positionShip += rotationShip * acelerationShip;
             transform.position = positionShip;
         }
