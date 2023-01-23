@@ -8,30 +8,13 @@ public class EnemyBasicMovements : MonoBehaviour
 
     [SerializeField] protected float speedModifier;
     [SerializeField] protected float turnModifier;
-    [SerializeField] protected float speedBulletModifier;
-    [SerializeField] protected float cdShoot;
-    [SerializeField] protected float distToStay;
-    protected float timerCDShoot;
     private Rigidbody2D _rigidbody2D;
 
     #endregion
 
-    private void Start()
+    protected void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
-    protected void RequestShoot()
-    {
-        
-        GameObject bullet = EnemyBulletPool.enemyBulletPool.DeliveryBullet();
-        bullet.GetComponent<Bullet>().owner = gameObject;
-        float angle = transform.rotation.eulerAngles.z+90;
-        Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad),0);
-        bullet.transform.position = transform.position + dir*0.5f;
-        
-        bullet.SetActive(true);
-        bullet.GetComponent<Rigidbody2D>().velocity = dir * speedBulletModifier;
     }
 
     protected float DirToPlayer()
@@ -63,11 +46,24 @@ public class EnemyBasicMovements : MonoBehaviour
         _rigidbody2D.velocity = dir * speedModifier;
     }
     
+    protected void Stay()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+    }
+    
     protected void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<LifeSystem>().takeDamage(10);
         }
+    }
+
+    protected void MoveBack()
+    {
+        float angle = transform.rotation.eulerAngles.z-90;
+        Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad),0);
+        _rigidbody2D.velocity = dir * speedModifier;
+        
     }
 }
