@@ -5126,6 +5126,8 @@ GameObject:
   - component: {fileID: 172528452}
   - component: {fileID: 172528453}
   - component: {fileID: 172528454}
+  - component: {fileID: 172528456}
+  - component: {fileID: 172528455}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5168,7 +5170,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 300
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5264,6 +5266,45 @@ MonoBehaviour:
   player: {fileID: 1313994456}
   offset: {x: 0, y: 5, z: -10}
   smoothSpeed: 0.125
+--- !u!95 &172528455
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172528448}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!320 &172528456
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172528448}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 95b180e2bb6f7e7439e852b8fc0367eb, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -2815070973137795195, guid: 95b180e2bb6f7e7439e852b8fc0367eb, type: 2}
+    value: {fileID: 172528455}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &330353781
 GameObject:
   m_ObjectHideFlags: 0
