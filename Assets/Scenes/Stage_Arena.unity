@@ -326,9 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d890e016707dc49953cc6c84df4cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToStart: 5
   hammer: {fileID: 4528181355753577211, guid: 6d4e3b8a357372a4bb2b2d2922c6b88d, type: 3}
-  spear: {fileID: 2425374505855486453, guid: e89986fcffe0c3746bd2530a7213ea23, type: 3}
   hammerTimeIncrement: 10
+  initialHammerQuantity: 2
+  spear: {fileID: 2425374505855486453, guid: e89986fcffe0c3746bd2530a7213ea23, type: 3}
+  spearTimeIncrement: 15
+  initialSpearQuantity: 0
 --- !u!4 &335141346
 Transform:
   m_ObjectHideFlags: 0
@@ -1530,9 +1534,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedModifier: 3
   turnModifier: 0.02
-  speedBulletModifier: 0
-  cdShoot: 0
   distToStay: 0
+  countToShoot: 0
+  chargingCd: 0
+  endAnimationCharging: 0
 --- !u!114 &1922637907
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,17 +10,27 @@ public class SpawnController : MonoBehaviour
 {
     #region Parameters
 
-    [SerializeField] private GameObject hammer;
-    [SerializeField] private GameObject spear;
+    [Header("General Settings")]
+    [SerializeField] private float timeToStart;
     private GameObject lancer;
+    private float timeElapsed;
+
+    [Header("Hammer Settings")]
+    [SerializeField] private GameObject hammer;
+    [SerializeField] private int hammerTimeIncrement;
+    [SerializeField] private int initialHammerQuantity;
+    private Transform hammerParent;
     private int hammerCount;
     private int hammerActiveCount;
+    
+    [Header("Spear Settings")]
+    [SerializeField] private GameObject spear;
+    [SerializeField] private float spearTimeIncrement;
+    [SerializeField] private float initialSpearQuantity;
+    private Transform spearParent;
     private int spearCount;
     private int spearActiveCount;
-    private Transform hammerParent;
-    private Transform spearParent;
-    [SerializeField] private int hammerTimeIncrement;
-
+    
     #endregion
 
     private void Start()
@@ -31,12 +41,20 @@ public class SpawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        spawnHammer();
+        if (timeToStart > 0) timeToStart -= Time.fixedDeltaTime;
+        else
+        {
+            timeElapsed += Time.fixedDeltaTime;
+            SpawnHammer();
+            SpawnSpear();
+        }
     }
 
-    private void spawnHammer()
+    #region SpawnnerFunctions
+
+    private void SpawnHammer()
     {
-        for (; hammerCount < (Time.timeSinceLevelLoad / hammerTimeIncrement) + 2; hammerCount++)
+        for (; hammerCount < (timeElapsed / hammerTimeIncrement) + initialHammerQuantity; hammerCount++)
         {
             Vector3 playerPos = PlayerStatus.playerObject.transform.position;
             GameObject newHammer = Instantiate(hammer, hammerParent);
@@ -44,5 +62,18 @@ public class SpawnController : MonoBehaviour
                                            (new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), 0).normalized)*20;
         }
     }
+
+    private void SpawnSpear()
+    {
+        for (; spearCount < (timeElapsed / spearTimeIncrement) + initialSpearQuantity; spearCount++)
+        {
+            Vector3 playerPos = PlayerStatus.playerObject.transform.position;
+            GameObject newSpear = Instantiate(spear, spearParent);
+            newSpear.transform.position = playerPos +
+                                          (new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), 0).normalized)*20;
+        }
+    }
+
+    #endregion
     
 }
