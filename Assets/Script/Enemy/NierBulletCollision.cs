@@ -8,6 +8,28 @@ using UnityEngine;
 public class NierBulletCollision : MonoBehaviour
 {
     [SerializeField] private GameObject bulletCollision;
+    [SerializeField]private float cdShoot;
+    private ParticleSystem ps;
+
+    private float timerCDShoot;
+    private void Awake()
+    {
+        ps = GetComponent<ParticleSystem>();
+        var mainModule = ps.main;
+        //mainModule.duration = cdShoot;
+    }
+
+    private void Update()
+    {
+
+        if(Input.GetButton("Fire1") && timerCDShoot <= 0)
+        {
+            ps.Play();
+            timerCDShoot = cdShoot;
+        }
+        else if (timerCDShoot >= 0) timerCDShoot -= Time.deltaTime;
+    }
+
     private void OnParticleCollision(GameObject other)
     {
         //ParticlePhysicsExtensions.GetCollisionEvents;
