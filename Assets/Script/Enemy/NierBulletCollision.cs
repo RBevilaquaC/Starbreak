@@ -9,7 +9,6 @@ public class NierBulletCollision : MonoBehaviour
 {
     [SerializeField] private GameObject bulletCollision;
     [SerializeField]private float cdShoot;
-    [SerializeField] private float rotateModifier;
     private ParticleSystem ps;
 
     private float timerCDShoot;
@@ -17,12 +16,7 @@ public class NierBulletCollision : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
         var mainModule = ps.main;
-        mainModule.duration = cdShoot;
-    }
-
-    private void FixedUpdate()
-    {
-        RotateCannon();
+        //mainModule.duration = cdShoot;
     }
 
     private void Update()
@@ -34,15 +28,6 @@ public class NierBulletCollision : MonoBehaviour
             timerCDShoot = cdShoot;
         }
         else if (timerCDShoot >= 0) timerCDShoot -= Time.deltaTime;
-        
-    }
-    private void RotateCannon()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, direction);
-        Vector3 targetRotation = new Vector3(0, 0, angle-90);
-        transform.rotation = (Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), rotateModifier));
     }
 
     private void OnParticleCollision(GameObject other)
