@@ -17,7 +17,7 @@ public class SpearMoviment : EnemyBasicMovements
     {
         if(timerCDShoot <= 0)
         {
-            RequestShoot();
+            //RequestShoot();
             timerCDShoot = cdShoot;
         }
         else if (timerCDShoot >= 0) timerCDShoot -= Time.deltaTime;

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4528181355753577206}
   - component: {fileID: 4528181355753577207}
   - component: {fileID: 4528181355753577201}
-  m_Layer: 0
+  - component: {fileID: 8276736021407523877}
+  m_Layer: 7
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,5 +158,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60eed534776fa5044b169f7f0fa6b638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModifier: 7
-  turnModifier: 0.1
+  speedModifier: 7.5
+  turnModifier: 0.05
+  speedBulletModifier: 0
+  cdShoot: 0
+  distToStay: 0
+--- !u!114 &8276736021407523877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528181355753577211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f4e3b060f3ce842934338ebf6d4992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 10
+  floatingTextPrefab: {fileID: 2498904764881984981, guid: 779193df8b7833348b6660935f5135c9, type: 3}

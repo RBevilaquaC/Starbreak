@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PlayerLifeSystem : LifeSystem
     {
         base.takeDamage(damgeAmount);
         UpdateLifeBar();
+        Camera.main.GetComponent<ShakeCamera>();
 
     }
 
@@ -18,4 +20,5 @@ public class PlayerLifeSystem : LifeSystem
     {
         lifeBar.value = (float)(currentLife)/maxLife;
     }
+    
 }
